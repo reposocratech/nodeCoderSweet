@@ -11,3 +11,45 @@ Para hacer un proyecto básico de servidor con express
 4- Si no queremos contestar esas preguntas
 
     $ npm init -y
+
+5- instalar las librerías necesarias para hacer nuestra aplicación, en nuestro caso, por ahora, solo express
+
+    $ npm i express
+
+    esto genera una carpeta llamada node_modules que contienen todas las carpetas y ficheros de las librerías (no se toca)
+
+6- la carpeta node_modules pesa y no queremos subirla a repositorio de git
+hay que crear un archivo oculto .gitignore y dentro ponemos node_modules para que no se suba a git
+
+7- si nos clonamos al proyecto de git, nunca vendrá con el node_modules, por lo que lo primero que tendríamos que hacer despues del clone es 
+
+    $ npm i
+
+para que npm mire la lista de dependencias del package.json e instale todas las librerías necesarias para que el proyecto arranque y funcione.
+
+para que no haya que tirar/levantar el servidor cada vez que hagamos una modificación
+usaremos la librería nodemon qye la instalaremos como librería o dependencia de desrrollo
+
+    $ npm i --save-dev nodemon
+
+8- crear el archivo principal de nuestra aplicación index.js o app.js 
+
+9- para ejecutar nuestro proyecto SIN NODEMON vamos a decirle a npm cómo queremos levantar el servidor. Para ello vamos a crear una propiedad nueva en package.json, en scripts
+
+    "dev": "node index.js"
+
+9.5- PARA LEVANTAR EL PROYECTO CON NODEMON
+el script:
+
+    "dev": "nodemon index.js"
+
+10- para ejecutar la aplicación pondremos
+
+    $ npm run dev
+
+11- empezamos el código
+
+12- para poder mandar archivos html:
+
+    -creamos una carpeta para guardar los html
+    - dentro creamos lod archivos de html que necesitemos

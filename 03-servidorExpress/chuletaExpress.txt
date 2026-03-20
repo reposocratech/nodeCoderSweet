@@ -1,0 +1,13 @@
+Para hacer un proyecto básico de servidor con express
+
+1- creamos la capeta que va a contener nuestro proyecto
+
+2- Abir una terminal y colocarnos en esa carpeta
+
+3- Transformar nuestra carpeta en un paquete de npm con el comando en terminal, que genera el archivo package.json, que es el archivo de configuración del paquete. Te hace una serie de preguntas
+
+    $ npm init
+
+4- Si no queremos contestar esas preguntas
+
+    $ npm init -y

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Formulario de registro</h2>
+    <form action="/register" method="post">
+        <div>
+            <label for="">Nombre</label>
+            <input type="text" name="user_name">
+        </div>
+        <div>
+            <label for="">Apellidos</label>
+            <input type="text" name="user_lastname">
+        </div>
+        <div>
+            <label for="">email</label>
+            <input type="email" name="user_email">
+        </div>
+        <div>
+            <label for="">Password</label>
+            <input type="text" name="password">
+        </div>
+        <div>
+            <label for="">repite el password</label>
+            <input type="text" name="rep_pass">
+        </div>
+        <div>
+            <button type="button" onclick="window.location.href='/'">Cancelar</button>
+            <button>Aceptar</button>
+        </div>
+    </form>
+</body>
+</html>

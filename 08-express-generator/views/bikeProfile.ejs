@@ -40,24 +40,11 @@
       </nav>
     </header>
     <main>
-      <h2>Catálogo de bicis</h2>
-      <div class="d-flex gap-3 justify-content-center flex-wrap">
-        
-        <% bikes.forEach((elem)=>{ %>
-            <div class="border border-1 rounded p-3">
-                <h3><%= elem.brand %></h3>
-                <h4>Modelo: <%= elem.model %></h4>
-                <h4>Precio: <%= elem.price %></h4>
-                <img style="width: 200px;" src="/images/bikes/<%= elem.picture %>" alt="">
-                <button 
-                  onclick="window.location.href='/bikes/oneBike/<%= elem.bike_id %>'"
-                  class="btn btn-primary"
-                >ver más</button>
-            </div>
-        <% }) %>
-      
-    </div>
-
+        <h2>Ficha técnica de la bicicleta</h2>
+        <h2>Modelo: <%= selectedBike.model %></h2>
+        <h2>Marca: <%= selectedBike.brand %></h2>
+        <h2>precio: <%= selectedBike.precio %></h2>
+        <img src="/images/bikes/<%= selectedBike.picture %>" />
     </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

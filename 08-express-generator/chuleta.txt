@@ -37,4 +37,7 @@ Esto genera en la carpeta que lo hemos ejecutado una carpeta llamad nombreDeCarp
 
 13.- en las rutas donde queramos conectar con la baser de datos hay que requerir la conexión del db.js
 
-14.- crear rutas que abran vistas y a disfrutar!!!!!!!
+14.- si un formulario tiene algún input de tipo file entonces en la etiqueta
+form debe tener enctype="multipar/formData" y usar multer para hacer copia del archivo qeu vamos a subir
+
+ crear rutas que abran vistas y a disfrutar!!!!!!!

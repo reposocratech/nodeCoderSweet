@@ -1,0 +1,36 @@
+1.- en la terminal colocarnos en la carpeta conde queramos generar nuestra carpeta del proyecto
+
+2.- comando 
+    $ express --view=ejs --git nombreDeCarpeta
+
+Esto genera en la carpeta que lo hemos ejecutado una carpeta llamad nombreDeCarpeta y de ntro de ella genera todo la arquitectura del proyecto
+
+3.- entrar en esa carpeta
+    $ cd nombreDeCarpeta 
+    
+4.- instalar todas las librerías por defecto 
+    $ npm i
+
+5.- instalamos librerías accesorias que usaremos a futuro
+
+    $ npm i multer mysql2
+
+6.- en el archivo package.json en scrypt ponemos
+
+    "dev":"nodemon ./bin/www"
+
+7.- en el archivo ./bin/www cambiamos el puerto, y en vez de 3000 ponemos el que queramos (4000)
+
+8.- ya podemos levantar el server con 
+    $ npm run dev
+
+9.- preparar los archivos de rutas
+10.- importar si hace falta las rutas en app.js
+11.- crear los middleware de rutas si fuera necesario 
+    app.use('/loquesea', loqueseaRoutes);
+
+12.- creamos la carpeta config y dentro el db.js con el código de configuración de la conexión a la bd
+
+13.- en lñas rutas donde queramos conectar con la baser de datos hay que requerir la conexión del db.js
+
+14.- crear rutas que abran vistas y a disfrutar!!!!!!!

@@ -13,12 +13,12 @@
     <main>
       <div class="d-flex justify-content-center pt-5">
         <form 
-            action="/bikes/newBike"
+            action="/bikes/updateBike/<%= bike.bike_id %>"
             method="post" 
             enctype="multipart/form-data"
             class="border border-1 rounded-2 mt-5 p-3"
         >
-          <h3>Formulario creacion bibicleta</h3>
+          <h3>Formulario Edición bibicleta</h3>
 
           <div class="mb-3">
             <label for="inputBrand" class="form-label">Marca</label>
@@ -28,26 +28,29 @@
               class="form-control"
               id="inputBrand"
               aria-describedby="emailHelp"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="inputModelo" class="form-label">Modelo</label>
-            <input 
+              value=<%= bike.brand %>
+              />
+            </div>
+            
+            <div class="mb-3">
+                <label for="inputModelo" class="form-label">Modelo</label>
+                <input 
                 name="model"    
                 type="text" 
                 class="form-control" 
                 id="inputModelo" 
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="inputPrice" class="form-label">Price</label>
-            <input 
+                value=<%= bike.model %>
+                />
+            </div>
+            
+            <div class="mb-3">
+                <label for="inputPrice" class="form-label">Price</label>
+                <input 
                 name="price"
                 type="text" 
                 class="form-control" 
                 id="inputPrice" 
+                value=<%= bike.price %>
             />
           </div>
 
@@ -69,20 +72,21 @@
                     type="radio"
                     name="type"
                     id="radioDefault1"
-                    checked
                     value="2"
-                  />
-                  <label class="form-check-label" for="radioDefault1">
-                      Manual
+                    <%= bike.type == 2 ? 'checked' : '' %>
+                    />
+                    <label class="form-check-label" for="radioDefault1">
+                        Manual
                     </label>
                 </div>
                 <div class="form-check">
                     <input
-                        class="form-check-input"
-                        type="radio"
-                        name="type"
-                        id="radioDefault2"
-                        value="1"
+                    class="form-check-input"
+                    type="radio"
+                    name="type"
+                    id="radioDefault2"
+                    value="1"
+                     <%= bike.type == 1 ? 'checked' : '' %>
                     />
                     <label class="form-check-label" for="radioDefault2">
                         Eléctrica
@@ -91,6 +95,7 @@
             </div>
 
           <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-primary">Reset</button>
         </form>
       </div>
     </main>
@@ -102,3 +107,4 @@
     ></script>
   </body>
 </html>
+47

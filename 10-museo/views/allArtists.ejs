@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Artistas</title>
+    <%- include('modules/links') %>
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+  </head>
+  <body>
+    <header><%- include('modules/navbar') %></header>
+    <main>
+      <h1>Conoce a nuestros artistas</h1>
+      <p>Bienvenid@s a nuestro museo</p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+
+        <% artists.forEach((elem)=>{ %>
+
+            <div class="card" style="width: 18rem">
+              <img 
+                src="/images/artists/<%= elem.avatar?elem.avatar : 'user.png' %>" 
+                class="card-img-top" 
+                alt="" 
+              />
+              <div class="card-body">
+                <h5 class="card-title"><%= elem.name %></h5>
+                <p class="card-text">
+                    <%= elem.lastname %>
+                </p>
+                <p class="card-text">
+                    <%= elem.email %>
+                </p>
+                <a href="/artist/profile/<%= elem.artist_id %>" class="btn btn-primary">Ver perfil</a>
+              </div>
+            </div>
+          
+        <% }) %>
+    
+    </div>
+    </main>
+    <%- include('modules/footer') %> <%- include('modules/scripts') %>
+  </body>
+</html>
+
+

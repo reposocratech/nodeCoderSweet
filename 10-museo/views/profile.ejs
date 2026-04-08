@@ -1,0 +1,32 @@
+<!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Perfil de artista</title>
+      <%- include('modules/links') %>
+      <link rel='stylesheet' href='/stylesheets/index.css' />
+    </head>
+    <body>
+      <header>
+        <%- include('modules/navbar') %>
+      </header>
+      <main>
+        <h1>Perfil de un artista</h1>
+        <div class="d-flex justify-content-center gap-5">
+            <img src="/images/artists/<%= artista.avatar?artista.avatar:'user.png' %>" alt="">
+            <div>
+                <h3>Nombre y apellidos: <%= `${artista.name} ${artista.lastname}` %></h3>
+                <h3>email: <%= artista.email %></h3>
+                <div>
+                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary">Borrar logico</button>
+                    <button class="btn btn-primary">Borrar definitivo</button>
+                </div>
+            </div>
+        </div>
+      </main>
+      <%- include('modules/footer') %>
+      <%- include('modules/scripts') %>
+  </body>
+</html>

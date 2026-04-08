@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register</title>
+    <%- include('modules/links') %>
+    <link rel="stylesheet" href="/stylesheets/register.css" />
+  </head>
+  <body>
+    <header><%- include('modules/navbar') %></header>
+    <main>
+      <div class="d-flex justify-content-center p-5">
+        <form 
+          action="/artist/register"
+          method="post"
+          class="w-25 border border-1 p-3 m-5" 
+        >
+          <h2>Formulario registro</h2>
+          <div class="mb-3">
+            <label for="inputName" class="form-label"
+              >Nombre</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="inputName"
+              aria-describedby="nameHelp"
+              name="name"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="inputLastname" class="form-label"
+              >Apellidos</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="inputLastname"
+              aria-describedby="lastnameHelp"
+              name="lastname"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label"
+              >Email</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              aria-describedby="emailHelp"
+              name="email"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="inputPassword" class="form-label"
+              >Password</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="inputPassword"
+              name="password"
+            />
+          </div>
+          <p class="msgErr"><%= typeof message != 'undefined' ? message: null %></p>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button 
+              type="button" 
+              class="btn btn-primary"
+              onclick="window.location.href='/'"
+            >Cancelar</button>
+          </div>
+          <p>¿Ya estás registrado? <a href="/artist/login">Login aqui</a></p>
+        </form>
+      </div>
+    </main>
+    <%- include('modules/footer') %> <%- include('modules/scripts') %>
+  </body>
+</html>

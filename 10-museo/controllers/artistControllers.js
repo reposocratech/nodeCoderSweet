@@ -17,17 +17,17 @@ class ArtistController {
         res.render('register', {message: "Debes cumplimentar todos los campos"})
     }else{
         //encriptar la password
-        bcrypt.hash(password, 10, (errHash, hashedPassword) => {
+        bcrypt.hash(password.trim(), 10, (errHash, hashedPassword) => {
             if (errHash) {
                 throw errHash;
             } else {
-                console.log("************************************", hashedPassword);
                 let sql =
                 "INSERT INTO artist (name, lastname, email, password) VALUES (?,?,?,?)";
-                let values = [name.trim(), lastname.trim(), email.trim(), hashedPassword.trim()];
+                let values = [name.trim(), lastname.trim(), email.trim(), hashedPassword];
                 
                 connection.query(sql, values, (err, result) => {
                     if (err) {
+                        //si el email ya existe en la db lanza este error de duplicidad
                         if(err.errno == 1062){
                             res.render('register', {message:"Email duplicado"})
                         }else{

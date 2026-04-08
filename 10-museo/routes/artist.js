@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const artistController = require('../controllers/artistControllers')
+const artistController = require('../controllers/artistControllers');
+const uploadFile = require('../middlewares/uploadFile');
 
 //1.- abre el formulario de registro de artista
 //url: http://localhost:4000/artist/register
@@ -24,6 +25,15 @@ router.get('/allArtist', artistController.allArtist);
 
 //6.- nos muestra el profile de un artista
 //url: http://localhost:4000/artist/profile/56
-router.get('/profile/:id', artistController.profile)
+router.get('/profile/:id', artistController.profile);
+
+//7.- nos abre el formulario de edición de un artista
+//url: http://localhost:4000/artist/showEditArtist/56
+router.get('/editArtist/:id', artistController.showEditArtist);
+
+//8.- recoge los datos del formulario y realiza el update en db
+//url: http://localhost:4000/artist/editArtist/56
+router.post('/editArtist/:id', uploadFile("artists") ,artistController.editArtist)
+
 
 module.exports = router;

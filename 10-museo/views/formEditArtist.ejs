@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edición</title>
+    <%- include('modules/links') %>
+    <link rel="stylesheet" href="/stylesheets/register.css" />
+  </head>
+  <body>
+    <header><%- include('modules/navbar') %></header>
+    <main>
+      <div class="d-flex justify-content-center p-5">
+        <form 
+          action="/artist/editArtist/<%= artistToEdit.artist_id %>"
+          method="post"
+          enctype="multipart/form-data"
+          class="w-25 border border-1 p-3 m-5" 
+        >
+          <h2>Formulario edición</h2>
+          <div class="mb-3">
+            <label for="inputName" class="form-label"
+              >Nombre</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="inputName"
+              aria-describedby="nameHelp"
+              name="name"
+              value="<%= artistToEdit.name %>" 
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="inputLastname" class="form-label"
+              >Apellidos</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="inputLastname"
+              aria-describedby="lastnameHelp"
+              name="lastname"
+              value="<%= artistToEdit.lastname %>" 
+              />
+          </div>
+
+          <div class="mb-3">
+            <label for="inputImg" class="form-label">
+                Sube una imagen 
+                <img style="width: 48px;" src="/images/assets/upload-solid.png" />
+            </label>
+
+            <input
+              type="file"
+              class="form-control"
+              id="inputImg"
+              name="img"
+              hidden
+            />
+          </div>
+
+          <p class="msgErr"><%= typeof message != 'undefined' ? message: null %></p>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button 
+              type="button" 
+              class="btn btn-primary"
+              onclick="window.location.href='/artist/profile/<%= artistToEdit.artist_id %>'"
+            >Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <%- include('modules/footer') %> <%- include('modules/scripts') %>
+  </body>
+</html>

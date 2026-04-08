@@ -109,6 +109,47 @@ class ArtistController {
     })
   }
 
+  showEditArtist = (req, res) =>{
+    const {id} = req. params;
+    let sql = 'SELECT * FROM artist WHERE artist_id = ? AND artist_is_deleted = 0'
+    connection.query(sql, [id], (err, result)=>{
+        if(err){
+            throw err
+        }else{
+            res.render('formEditArtist', {artistToEdit: result[0]})
+        }
+    })
+  }
+
+  editArtist = (req, res) => {
+    const {name, lastname} = req.body;
+    const {id} = req.params;
+
+    if(!name || !lastname) {
+        let sql1 = 'SELECT * FROM artist WHERE artist_id = ? AND artist_is_deleted = 0'
+        connection.query(sql1, [id], (err1, result1)=>{
+        if(err1){
+            throw err1
+        }else{
+            res.render('formEditArtist', {artistToEdit: result1[0], message:"Debes cumplimentar todos los campos"})
+        }
+        })
+    }else{
+        let sql2 = 'UPDATE artist SET name=?, lastname=? WHERE artist_id = ?';
+        let values = [name, lastname, id]
+        if(req.file){
+            sql2 = 'UPDATE artist SET name=?, lastname=?, avatar=? WHERE artist_id = ?';
+            values = [name, lastname, req.file.filename, id]
+        }
+        connection.query(sql2, values, (err2, result2)=>{
+            if(err2){
+                throw err2
+            }else{
+                res.redirect(`/artist/profile/${id}`)
+            }
+        })
+    }
+  }
 }
 
 module.exports = new ArtistController();

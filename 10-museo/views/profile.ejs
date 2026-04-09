@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Perfil de artista</title>
       <%- include('modules/links') %>
-      <link rel='stylesheet' href='/stylesheets/index.css' />
+      <link rel='stylesheet' href='/stylesheets/profile.css' />
     </head>
     <body>
       <header>
@@ -13,8 +13,10 @@
       </header>
       <main>
         <h1>Perfil de un artista</h1>
-        <div class="d-flex justify-content-center gap-5">
-            <img src="/images/artists/<%= artista.avatar?artista.avatar:'user.png' %>" alt="">
+        <div class="d-flex flex-column align-items-center gap-5">
+            <img
+              class="profile-img"
+              src="/images/artists/<%= artista.avatar?artista.avatar:'user.png' %>" alt="">
             <div>
                 <h3>Nombre y apellidos: <%= `${artista.name} ${artista.lastname}` %></h3>
                 <h3>email: <%= artista.email %></h3>
@@ -23,8 +25,38 @@
                       class="btn btn-primary"
                       onclick="window.location.href='/artist/editArtist/<%= artista.artist_id %>'"
                     >Editar</button>
-                    <button class="btn btn-primary">Borrar logico</button>
-                    <button class="btn btn-primary">Borrar definitivo</button>
+                    <button 
+                        class="btn btn-primary"
+                        onclick="window.location.href='/artist/delLog/<%= artista.artist_id %>'"
+                      >Borrar logico</button>
+                    <button 
+                        class="btn btn-primary"
+                        onclick="window.location.href='/artist/delDef/<%= artista.artist_id %>'"
+                      >Borrar definitivo</button>
+                    <button 
+                      class="btn btn-primary" 
+                      onclick="window.location.href='/artwork/showNewArtwork/<%= artista.artist_id %>'"
+                    >añadir obra</button>
+                </div>
+            </div>
+            <div class="gal-artworks">
+                <h2>Tus obras de arte</h2>
+                <div class="d-flex flex-wrap gap-3 justify-content-center">
+
+                  <% resultArtworks.forEach((elem)=>{ %>
+                    <div class="card" style="width: 18rem;">
+                      <img src="/images/artworks/<%= elem.artwork_img %>" class="card-img-top" alt="">
+                      <div class="card-body">
+                        <h5 class="card-title"><%= elem.title %></h5>
+                        <p class="card-text">Precio: <%= elem.price %></p>
+                        <a href="#" class="btn btn-primary">Ver más</a>
+                        <a href="/artwork/showEditArtwork/<%= elem.artwork_id %>" class="btn btn-primary">editar</a>
+                        <a href="/artwork/delLog/<%= elem.artwork_id %>/<%= elem.artist_id %>" class="btn btn-primary">borrar log</a>
+                        <a href="/artwork/delDef/<%= elem.artwork_id %>/<%= elem.artist_id %>" class="btn btn-primary">borrar def</a>
+                      </div>
+                    </div>
+                    
+                    <% }) %>
                 </div>
             </div>
         </div>
@@ -33,3 +65,4 @@
       <%- include('modules/scripts') %>
   </body>
 </html>
+

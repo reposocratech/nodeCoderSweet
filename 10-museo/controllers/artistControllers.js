@@ -2,6 +2,9 @@ const bcrypt = require("bcrypt");
 
 const connection = require("../config/db");
 
+const jwt = require('jsonwebtoken');
+const sendEmail = require("../services/emailServices");
+
 class ArtistController {
   showRegister = (req, res) => {
     // res.render("register", { message:"" });
@@ -34,6 +37,7 @@ class ArtistController {
                             throw err;
                         }            
                     } else {
+                        sendEmail(email, name, lastname);
                         res.redirect("/artist/login");
                     }
                 });
@@ -51,7 +55,8 @@ class ArtistController {
     const password = req.body.password.trim();
     //validaciones
     if(!email || !password){
-        res.render('login', {message: "Debas cumplimentar todos los campos"})
+        // res.render('login', {message: "Debas cumplimentar todos los campos"})
+        res.status(400).json({message:"algún campo está vacío"})
     }else{
         //1º ver si el email del artista existe
         let sql = 'SELECT * FROM artist WHERE email = ? AND artist_is_deleted = 0';
@@ -60,7 +65,8 @@ class ArtistController {
                 throw err;
             }else{
                 if(!result.length){
-                    res.render('login', {message:"Credenciales incorrectas"})
+                    // res.render('login', {message:"Credenciales incorrectas"})
+                    res.status(401).json({message:"Credenciales incorrectas"})
                 }else{
                     //ver si la contraseña es la adecuada para ese artista
                     //comprobar que la contraseña que viene con el formulario 
@@ -71,9 +77,16 @@ class ArtistController {
                             throw errCompare
                         }else{
                             if(resultCompare===true){
-                                res.redirect(`/artist/profile/${result[0].artist_id}`)                    
+                                //generar el token
+                                const token = jwt.sign({id: result[0].artist_id}, "patata", {expiresIn: "3h"});
+                                console.log("tttoookkkeeenn", token);
+
+                                res.status(200).json({token})
+                                
+                                // res.redirect(`/artist/profile/${result[0].artist_id}`)                    
                             }else{
-                                res.render("login", {message: "Credenciales incorrectas"})
+                                res.status(401).json({message: "Credenciales incorrectas"})
+                                //res.render("login", {message: "Credenciales incorrectas"})
                             }
                         }
                     })
@@ -81,7 +94,7 @@ class ArtistController {
             }
         })
     }
-
+35
   }
 
   allArtist = (req, res) => {
@@ -109,9 +122,8 @@ class ArtistController {
                 if(err2){
                     throw err2
                 }else{
-                    console.log(resultArtworks);
-                    
-                    res.render('profile', {artista:result[0], resultArtworks});
+                    res.status(200).json({artista:result[0], resultArtworks})
+                    // res.render('profile', {artista:result[0], resultArtworks});
                 }
             })
         }
